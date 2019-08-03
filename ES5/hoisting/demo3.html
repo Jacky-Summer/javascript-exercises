@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>条件判断下的变量提升</title>
+</head>
+<body>
+    <script>
+        /*
+        * 在当前作用域下，不管条件是否成立都要进行变量提升
+        *   =>带VAR的还是只声明
+        *   =>带FUNCTION的在老版本浏览器渲染机制下，声明和定义都处理，但是为了迎合ES6中的块级作用域，新版浏览器对于函数（在条件判断中的函数），
+        *     不管条件是否成立，都只是先声明，没有定义，类似于var
+        */
+        console.log(a);//undefined
+       if(1 === 2){
+           var a = 3;
+       }
+       console.log(a);//undefined
+
+    </script>
+</body>
+</html>

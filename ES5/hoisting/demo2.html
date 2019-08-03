@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>只对等号左边进行变量提升</title>
+</head>
+<body>
+    <script>
+        
+        sum();
+        fn();// Uncaught TypeError: fn is not a function 
+
+
+        //=>匿名函数之函数表达式
+        var fn = function(){
+            console.log('fn');
+        }//=>代码执行到此处会把函数值赋值给fn
+
+        //=>普通的函数
+        function sum(){
+            console.log('sum')
+        }
+    </script>
+</body>
+</html>
