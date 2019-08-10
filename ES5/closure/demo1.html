@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点击li标签弹出对应数字</title>
+</head>
+<body>
+    <ul>
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+<script>
+    var list = document.getElementsByTagName('li');
+    // for(var i = 0;i < list.length;i++){
+    //     list[i].onclick = function(){
+    //         alert(i);
+                //=>执行方法，形成一个私有的栈内存，遇到变量I，I不是私有变量，向上一级作用域查找（上级作用域WINDOW）
+                //=>所有的事件绑定都是异步编程（异步编程：当前这件事件没有彻底完成，不再等待，继续执行下面的任务），绑定事件后，不需要等待执行，继续执行下一个循环任务，所以当我们点击执行方法的时候，循环早已结束（让全局的i等于循环最后的结果3））
+    //     }
+    // }
+
+
+    // 法一：自定义属性
+    // for(var i = 0;i < list.length;i++){
+    //     list[i].myIndex = i;
+    //     list[i].onclick = function(){
+    //         alert(this.myIndex);
+               //=>this:给当前元素的某个事件绑定方法,当事件触发,方法执行的时候,方法中的THIS是当前操作的元素对象
+    //     }
+    // }
+
+    // 法二：闭包1
+    // for(var i = 0;i < list.length;i++){
+    //     list[i].onclick = (function(n){
+           //=>让自执行函数执行,把执行的返回值(return)赋值给onclick（此处onclick绑定的是返回的小函数，点击的时候执行的是小函数），自执行函数在给事件赋值的时候就已经执行了
+    //         var i = n;
+    //         return function(){
+    //             alert(i);//=>上级作用域：自执行函数形成的作用域
+    //         }
+    //     })(i);
+    // }
+    
+    //法3：闭包2
+    /*原理同法二都是形成三个不销毁的私有作用域,分别存储需要的索引值*/
+    for(var i = 0;i < list.length;i++){
+        (function(n){
+            list[n].onclick = function(){
+                alert(n);
+            } 
+        })(i)
+    }
+
+    // 法4：ES6
+    // for(let i = 0;i < list.length;i++){
+    //     list[i].onclick = function(){
+    //         alert(i);
+    //     }
+    // }
+</script>
+</body>
+</html>

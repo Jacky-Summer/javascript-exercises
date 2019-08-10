@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+   /*
+    * 需求一：获取数组中的最大值(最小值)
+    *   1.给数组先排序(由大到小排序),第一项就是最大值
+    *   2.假设法:假设第一个值是最大值,依次遍历数组中后面的每一项,和假设的值进行比较,如果比假设的值要大,把当前项赋值给MAX...
+    *   3.基于Math.max完成
+    *   4.ES6展开运算符
+    */
+
+    //法一
+    let arr = [1,5,6,7,9,20,40,2,3];
+    let max1 = arr.sort(function(a,b){
+        return b-a;
+    })[0];
+    console.log(max1);
+
+    //法二
+    let max2 = arr[0];
+    for(let i = 1; i <= arr.length; i++){
+        let item = arr[i];
+        item > max2 ? max2 = item : null;
+    }
+    console.log(max2);
+
+    //法三
+    console.log(Math.max.apply(null, arr));
+    
+    //法四
+    console.log(Math.max(...arr));
+
+
+</script>
+</body>
+</html>
