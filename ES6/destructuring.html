@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解构赋值</title>
+</head>
+<body>
+<script>
+    /*
+     * 解构赋值：按照一个数据值的结构，快速解析获取到其中的内容
+     *   
+     */
+
+     /* 数组解构赋值 */
+
+    // let arr = [10,12,13];
+    // let [a,b,c] = arr;
+    // console.log(a,b,c);//10 12 13
+
+    // let arr = [10,12,13];
+    // let [a,b,c,d=0] = arr;//=>在解构的时候可以给变量设置默认值：如果当前变量对应结构中的这一项没有值，变量用默认值
+    // console.log(a,b,c,d);//10 12 13 0
+
+    // let arr = [12, 23, 34, 45, 56];
+    // let [a,...b] = arr;
+    // console.log(a,b);//12 (4) [23, 34, 45, 56]
+
+    // let arr = [10,12,13];
+    // let [a,,c] = arr;
+    // console.log(a,c);//10,13
+
+    let arr = [10,12,13];
+    let [,,c] = arr;
+    console.log(c);
+    
+    /* 对象解构赋值 */
+    let obj = {name:"jacky",age:20,sex:'man'};
+
+    // let {name,age} = obj;//=>对象解构赋值默认情况下要求：左侧变量名和对象中的属性名一致才可以
+    // let {sex} = obj;
+    // console.log(name,age);//jacky 20
+    // console.log(sex);//man
+
+    let {age:myAge} = obj;
+    // console.log(age);//Uncaught ReferenceError: age is not defined
+    console.log(myAge);//20 给解构的属性名起别名作为我们使用的变量
+
+    //=>把传递的对象解构了(不传递值,默认赋值为空对象：现在传递对象或者不传递，形参接收到的都是对象)，
+    //解构的时候，可以把传递进来对象中，如果某个属性不存在，我们赋值默认值
+    let fn = function({
+        name='lxj',
+        age=22    
+    }={}){
+        console.log(name,age);
+    }
+    fn();//lxj,22
+    fn({name:'lmq',age:22});//lmq,22
+    
+    
+    
+
+
+    
+    
+    
+    
+
+
+    
+</script>
+</body>
+</html>

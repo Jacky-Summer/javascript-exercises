@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+ * 编写一个方法fn，实现任意数求平均数（去除数字中的最大和最小，然后再算平均数，保留小数点后面两位）
+ */
+
+ /*
+  * ES5 arguments或slice做法 
+  */
+
+    let fn = function(){
+        let total = 0;
+        //获取arr：法一
+        // let arr = [];
+        // for(let i = 0; i < arguments.length; i++){
+        //     arr[i] = arguments[i];
+        // }
+        
+        //获取arr：法二
+        //=>把ARG类数组转换为数组ARY（把类数组克隆一份一模一样的，最后存储到数组中）  =>数组的SLICE可以实现克隆的
+        //=>把内置的SLICE方法执行 Array.prototype.slice() / [].slice() ...
+        //=>类数组借用数组原型上的方法执行,实现相关的操作(借用SLICE实现把类数组转换为数组)  
+        //前提：类数组和数组类似，都有length和索引（字符串也符合这个前提，所以也可以这样搞）
+        /*
+         * 拓展 [].sort.call(arguments, function (a, b) {
+                    return a - b;
+                });//=>借用SORT给ARG排序，除此之外其它的很多数组的方法都可以被ARG借用
+         */
+        let arr = [].slice.call(arguments,0);
+
+        arr.sort(function(a,b){
+            return b-a;
+        }).pop();//从大到小排序，选出最前面的最大值并删除
+
+        arr.shift();//删除末尾的最小值
+
+        for(let i = 0; i < arr.length; i++){
+            total += arr[i];
+        }
+        return (total/arr.length).toFixed(2);
+    }
+    console.log(fn(1.5,2.2,3.5,6.7,10.9,6));
+
+    /*
+    * ES6做法
+    */
+    //获取arr数组
+    function fn2(){
+        let arr2 = [...arguments];
+        console.log(arr2);
+        //其它同上
+    }
+    console.log(fn2(1.5,2.2,3.5,6.7,10.9,6));
+
+</script>
+</body>
+</html>
