@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #outer{
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            border: 10px solid red;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer"></div>
+<script>
+    var outer = document.getElementById('outer');
+    //=>把获取的结果去除单位（只有符合 数字+单位 这种模式的结果才能基于PARSE-FLOAT去单位）
+    function getCss(element,attr){
+        if(typeof window.getComputedStyle === undefined){
+            return;
+        }
+        var val = window.getComputedStyle(element,null)[attr];
+        let reg = /^-?\d+(\.\d+)?(px|rem|em|pt|vw|vh)?$/i;//去掉单位
+        reg.test(val) ? val = parseFloat(val) : null;
+        return val;
+    }
+    console.log(getCss(outer,"border"));//10px solid rgb(255, 0, 0)
+    console.log(getCss(outer,"width"));//100
+</script>
+</body>
+</html>

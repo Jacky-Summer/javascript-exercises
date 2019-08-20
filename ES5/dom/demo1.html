@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #outer{
+            position: relative;
+            top: 20px;
+            left: 20px;
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            border: 10px solid red;
+            /* overflow: hidden; */
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        11111111111111111111111111111111111
+        11111111111111111111111111111111111
+        11111111111111111111111111111111111
+        11111111111111111111111111111111111
+        11111111111111111111111111111111111
+        11111111111111111111111111111111111
+        11111111111111111111111111111111111
+        11111111111111111111111111111111111
+        11111111111111111111111111111111111
+        11111111111111111111111111111111111
+        11111111111111111111111111111111111
+    </div>
+<script>
+    var outer = document.getElementById('outer');
+    console.log(outer.clientWidth);//220
+    console.log(outer.clientHeight);//220
+    console.log(outer.clientTop);//10
+    console.log(outer.clientLeft);//10
+    console.log(outer.scrollHeight);//238（近似值）
+    console.log(outer.scrollWidth);//338（近似值）
+    console.log(outer.offsetHeight);//240
+    console.log(outer.offsetWidth);//240
+
+
+//=>clientTop/Left/Width/Height
+//1.clientWidth & clientHeight：获取当前元素可视区域的宽高（内容的宽高+左右/上下PADDING）
+//=>和内容是否有溢出无关（和是否设置了OVERFLOW:HIDDEN也无关），就是我们自己设定的内容的宽高+PADDING
+
+//=>获取当前页面一屏幕(可视区域)的宽度和高度
+// document.documentElement.clientWidth || document.body.clientWidth
+// document.documentElement.clientHeight || document.body.clientHeight
+
+//2.clientTop & clientLeft：获取(上/左)边框的宽度
+
+//3.offsetWidth & offsetHeight：在client的基础上加上border（和内容是否溢出也没有关系）
+
+//4、scrollWidth & scrollHeight：真实内容的宽高（不一定是自己设定的值，因为可能会存在内容溢出，有内容溢出的情况下，需要把溢出的内容也算上）+ 左/上PADDING，而且是一个约等于的值 （没有内容溢出和CLIENT一样）
+//=>在不同浏览器中，或者是否设置了OVERFLOW:HIDDEN都会对最后的结果产生影响，所以这个值仅仅做参考，属于约等于的值
+
+//=>获取当前页面的真实宽高（包含溢出的部分）
+// document.documentElement.scrollWidth || document.body.scrollWidth
+// document.documentElement.scrollHeight || document.body.scrollHeight
+
+</script>
+</body>
+</html>
