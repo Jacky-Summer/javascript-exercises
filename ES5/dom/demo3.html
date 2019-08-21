@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            height: 100px;
+            width:100px;
+            padding: 10px;
+            border: 10px solid black;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+<script>
+    var con = document.getElementsByClassName('container')[0];
+
+    //设置元素css样式
+    function setCss(element,attr,value){
+        if(attr === 'opacity'){
+            element.style.opacity = value;
+            element.style.filter = "alpha(opacity=" + value*100 + ")";
+        }
+        //=>IS-NaN检测的结果是FALSE：说明VALUE是纯数字没单位
+        if(!isNaN(value)){
+            var reg = /^(width|height|fontSize|((margin|padding)?(top|left|right|bottom)?))$/i;
+            reg.test(attr) ? value += 'px' : null;
+        }
+        element['style'][attr] = value;
+    }
+
+    //获取元素css样式
+    function getCss(element,attr){
+        if(window.getComputedStyle === undefined){
+            return;
+        }
+        var val = window.getComputedStyle(element,null)[attr];
+        var reg = /^-?\d+(\.\d+)?(px|rem|em|pt|vw|vh)?$/i;
+        reg.test(val) ? val = parseFloat(val) : null;
+        return val;
+    }
+
+    console.log(getCss(con,"border"));
+    setCss(con,"width","200px");
+</script>
+</body>
+</html>
