@@ -47,8 +47,20 @@
         return val;
     }
 
-    console.log(getCss(con,"border"));
-    setCss(con,"width","200px");
+    //批量设置css元素样式
+    function setGroupCss(element,options={}){
+        for(var attr in options){
+            if(!options.hasOwnProperty(attr)) break;
+            setCss(element,attr,options[attr]);
+        }
+    }
+
+    // console.log(getCss(con,"border"));
+    // setCss(con,"width","200px");
+    setGroupCss(con,{
+        width:"200px",
+        height:"800px"
+    });
 </script>
 </body>
 </html>
