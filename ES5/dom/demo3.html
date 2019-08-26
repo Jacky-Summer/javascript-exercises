@@ -55,6 +55,28 @@
         }
     }
 
+    // var css = function(...arg){
+    //     let len = arg.length;
+    //     if(len >= 3){
+    //         // setCss.apply(null,arg);
+    //         setCss(...arg);
+    //         return;
+    //     }
+    //     if(len === 2 && typeof arg[1] === "object" && typeof arg[1] !== null){
+    //         setGroupCss(...arg);
+    //         return;
+    //     }
+    //     return getCss(...arg);
+    // }
+
+    var css = function(...arg){
+        let len = arg.length,
+            fn = getCss;
+        len >= 3 ? fn = setCss : null;
+        len === 2 && (arg[1] === 'object') && (arg[1] !== null) ? fn = setGroupCss : null;
+        return fn(...arg);
+    }
+
     // console.log(getCss(con,"border"));
     // setCss(con,"width","200px");
     setGroupCss(con,{
