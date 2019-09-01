@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .marqueeBox{
+            position: relative;
+            margin: 20px auto;
+            width: 500px;
+            height: 100px;
+            border: 1px solid green;
+            overflow: hidden;
+        }
+        .wrapper{
+            width: 900px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            list-style: none;
+        }
+        .marqueeBox li{
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            float: left;
+        }
+        .marqueeBox li:nth-child(3n+1){
+            background: red;
+        }
+        .marqueeBox li:nth-child(3n+2){
+            background: yellow;
+        }
+        .marqueeBox li:nth-child(3n+3){
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="marqueeBox">
+        <ul class="wrapper">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+        </ul>
+    </div>
+    <script src="./utils.js"></script>
+    <script src="./marquee.js"></script>
+</body>
+</html>
