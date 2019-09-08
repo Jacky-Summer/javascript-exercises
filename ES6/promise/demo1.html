@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // setTimeout(()=>{
+        //     console.log('time');//后执行
+        // },1000);
+        // console.log('timeout');//先执行
+
+        new Promise((resolve,reject) => {
+            //=>resolve：当异步操作执行成功，执行resolve方法
+            //=>reject：当异步操作执行失败，执行reject方法
+            setTimeout(()=>{
+                resolve(100);
+            },1000);
+        }).then((res)=>{
+            console.log('ok '+ res);
+        },()=>{
+            console.log('fail');
+        });
+    </script>
+</body>
+</html>
