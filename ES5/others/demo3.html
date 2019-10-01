@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript中如何翻转一个字符串？</title>
+</head>
+<body>
+    
+<script>
+    var str = "abcdefg";
+    
+    //法一
+    var newStr = '';
+    for(var i = 1; i <= str.length; i++){
+        newStr += str[str.length - i];
+    }
+    console.log('1:' + newStr);
+
+    //法二
+    function reverseString(str){
+        return str.split('').reverse().join('');
+    }
+    console.log('2:' + reverseString(str));
+
+    //法三
+
+</script>
+</body>
+</html>
