@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防抖函数</title>
+</head>
+<body>
+    <button id="btn">按钮-不能多次连续提交哦</button>
+<script>
+    let btn = document.getElementById('btn');
+    function debounce(fn, delay, immediate){
+        let timer = null;
+        return function(...args){
+            if(timer){
+                clearTimeout(timer);
+            }
+            if(immediate && !timer){
+                fn.apply(this,args);
+            }
+            timer = setTimeout(() => {
+                fn.apply(this,args);
+            },delay);
+        }
+    }
+    let debounceSubmit = debounce(submit,500,true);
+    btn.addEventListener('click',function(){
+        debounceSubmit();
+    }); 
+
+    function submit(){
+        console.log('submit');
+    }
+
+    
+</script>
+</body>
+</html>
